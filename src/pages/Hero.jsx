@@ -1,5 +1,5 @@
 import React from "react";
-import { MostSearched } from "../components/ui/MostSearch";
+import { MostPopular } from "../components/ui/MostPopular";
 
 export function Hero() {
   return (
@@ -7,7 +7,7 @@ export function Hero() {
       <div className="flex flex-col items-center p-5  gap-6 w-full ">
         <h2 className="text-[60px] font-bold">Welcome To Manga Hinog</h2>
       </div>
-      <MostSearched />
+      <MostPopular />
     </div>
   );
 }
