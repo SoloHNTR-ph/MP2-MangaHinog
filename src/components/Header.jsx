@@ -28,7 +28,7 @@ export function Header() {
         />
 
         <button className="bg-blue-500 text-white px-4 py-2 rounded hover:text-accent-foreground">
-          Search
+          <Link to="/result">Search</Link>
         </button>
       </div>
     </div>
