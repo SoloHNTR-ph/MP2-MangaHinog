@@ -1,32 +1,43 @@
 import React from "react";
-import { Chapters } from "../components/Chapters";
+import { useParams } from "react-router-dom";
+import useFetch from "../hooks/useFetch";
 
 export function MangaDetails() {
+  const { id } = useParams();
+  const { data, loading, error } = useFetch(
+    `https://api.jikan.moe/v4/manga/${id}`
+  );
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
+
+  const { title, synopsis, images, authors, genres, status } = data?.data || {};
+
   return (
     <div>
-      <div className="mt-3">
-        <div className="flex">
+      <div className="mt-3 mx-5">
+        <div className="flex w-full gap-9">
           <div className="w-48">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg" alt="" />
+            <img src={images?.jpg?.image_url} alt={title} />
           </div>
-          <div className="container">
-            <h1 className="text-5xl">Manga title</h1>
-            <h3>Author</h3>
-            <h3>Genre</h3>
-            <h3>Status</h3>
+          <div className="flex flex-col w-full h-auto justify-between">
+            <div className="flex flex-col justify-between w-full">
+              <h1 className="text-6xl font-extrabold">{title}</h1>
+              <div className="flex justify-between">
+                <div className="flex gap-5">
+                  <h3>{authors?.map((author) => author.name).join(", ")}</h3>
+                  <h3>{genres?.map((genre) => genre.name).join(", ")}</h3>
+                </div>
+                <div className="flex">
+                  <h3>{status}</h3>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3>Summary:</h3>
+              <p>{synopsis}</p>
+            </div>
           </div>
-        </div>
-        <div>
-          <h3>Summary:</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti
-            voluptatum nemo laudantium eos assumenda omnis, minima autem dolorem
-            provident accusamus cupiditate facere dignissimos architecto quia
-            voluptate odit suscipit reprehenderit dicta.
-          </p>
-        </div>
-        <div>
-          <Chapters/>
         </div>
       </div>
     </div>

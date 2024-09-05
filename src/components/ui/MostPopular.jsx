@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { MangaCard } from "../Card";
 import useFetch from "../../hooks/useFetch";
-
+  
 export const MostPopular = () => {
   const { data, loading, error } = useFetch('https://api.jikan.moe/v4/top/manga?limit=8');
 

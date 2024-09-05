@@ -4,7 +4,6 @@ import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { Hero } from "./pages/Hero";
 import { MangaDetails } from "./pages/MangaDetails";
-import { ChapterPages } from "./pages/ChapterPages";
 import { Result } from "./pages/ResultPage";
 
 function App() {
@@ -13,8 +12,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Hero />} />
-        <Route path="/mangadetails/" element={<MangaDetails />} />
-        <Route path="/mangadetails/chapterpages" element={<ChapterPages />} />
+        <Route path="/manga/:id" element={<MangaDetails />} />
         <Route path="/result/" element={<Result />} />
       </Routes>
       <Footer />
