@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Hero />} />
         <Route path="/manga/:id" element={<MangaDetails />} />
-        <Route path="/result/" element={<Result />} />
+        <Route path="/result?query=${searchTerm}" element={<Result />} />
       </Routes>
       <Footer />
     </BrowserRouter>

@@ -1,13 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export function Header() {
+export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    if (searchTerm) {
+      navigate(`/result?query=${searchTerm}`);
+    }
+  };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-  
+
   // Close the menu when the user scrolls
   useEffect(() => {
     const handleScroll = () => {
@@ -30,7 +39,10 @@ export function Header() {
 
       {/* Hamburger Icon for All Screens */}
       <div className="block">
-        <button onClick={toggleMenu} className="absolute top-12 left-10 text-black-600 focus:outline-none">
+        <button
+          onClick={toggleMenu}
+          className="absolute top-12 left-10 text-black-600 focus:outline-none"
+        >
           <svg
             className="w-8 h-8"
             fill="none"
@@ -54,7 +66,10 @@ export function Header() {
           isOpen ? "fixed" : "hidden"
         } top-10 left-8 right-0 w-[200px] h-[200px] bg-white z-0 flex flex-col justify-start items-start gap-10`}
       >
-        <button onClick={toggleMenu} className="left top-5 right-5 text-black-600 focus:outline-none">
+        <button
+          onClick={toggleMenu}
+          className="left top-5 right-5 text-black-600 focus:outline-none"
+        >
           <svg
             className="w-6 h-6"
             fill="none"
@@ -94,13 +109,18 @@ export function Header() {
         <input
           type="text"
           placeholder="Search..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
           className="border border-gray-300 rounded px-4 py-2"
         />
 
-        <button className="bg-blue-500 text-white px-4 py-2 rounded hover:text-accent-foreground">
-          <Link to="/result">Search</Link>
+        <button
+          onClick={handleSearch}
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:text-accent-foreground"
+        >
+          Search
         </button>
       </div>
     </div>
   );
-}
+};
