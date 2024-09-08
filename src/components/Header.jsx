@@ -1,23 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { SearchBar } from "./ui/SearchBar";
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  const navigate = useNavigate();
-
-  const handleSearch = () => {
-    if (searchTerm) {
-      navigate(`/result?query=${searchTerm}`);
-    }
-  };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  // Close the menu when the user scrolls
   useEffect(() => {
     const handleScroll = () => {
       if (isOpen) {
@@ -103,24 +94,7 @@ export const Header = () => {
           </li>
         </ul>
       </div>
-
-      {/* Search Input and Button */}
-      <div className="hidden md:flex gap-4 items-center">
-        <input
-          type="text"
-          placeholder="Search..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="border border-gray-300 rounded px-4 py-2"
-        />
-
-        <button
-          onClick={handleSearch}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:text-accent-foreground"
-        >
-          Search
-        </button>
-      </div>
+      <SearchBar/>
     </div>
   );
 };

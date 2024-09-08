@@ -1,11 +1,11 @@
 import React from "react";
 
-export function CardSearch() {
+export function CardSearch({imageUrl, title, ranking, status, genre, synopsis}) {
   return (
     <div className="border-solid border-2 border-black">
       <div className="flex">
         <div>
-          <img src={imgUrl} alt="" className="rounded max-w-sm h-36" />
+          <img src={imageUrl} alt="" className="rounded max-w-sm h-36" />
         </div>
         <div>
           <div className="flex justify-between">
