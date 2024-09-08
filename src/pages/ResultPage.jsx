@@ -18,8 +18,8 @@ export const Result = () => {
   return (
     <div className="container">
       <h1>Search Results for "{query}":</h1>
-      {data?.data?.map((manga) => (
-        <Link key={manga.mal_id} to={`/manga/${manga.mal_id}`}>
+      {data?.data?.map((manga, index) => (
+        <Link key={`${manga.mal_id}-${index}`} to={`/manga/${manga.mal_id}`}>
           <CardSearch
             imageUrl={manga.images.jpg.image_url}
             title={manga.title}
