@@ -13,7 +13,7 @@ export const Chapters = () => {
     }/manga/${id}/feed?translatedLanguage[]=en&order[chapter]=desc&limit=20&offset=${page * 20}`
   );
 
-  // Append the new chapters when data is fetched
+  
   useEffect(() => {
     if (data?.data) {
       setChapters((prevChapters) => [...prevChapters, ...data.data]);
@@ -21,7 +21,7 @@ export const Chapters = () => {
     }
   }, [data]);
 
-  // Listen to scroll event for infinite scrolling inside the container
+  
   const handleScroll = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
     if (scrollTop + clientHeight >= scrollHeight && !isFetching) {
@@ -38,7 +38,7 @@ export const Chapters = () => {
       <h1>Chapters:</h1>
       <div
         className="flex flex-col gap-3 overflow-y-auto"
-        style={{ maxHeight: "400px" }} // Set the container height
+        style={{ maxHeight: "400px" }} 
         onScroll={handleScroll}
       >
         {chapters.length > 0 ? (
