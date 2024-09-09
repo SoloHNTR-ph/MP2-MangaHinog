@@ -2,9 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { MangaCard } from "../Card";
 import useFetch from "../../hooks/useFetch";
-  
+
 export const MostPopular = () => {
-  const { data, loading, error } = useFetch('https://api.jikan.moe/v4/top/manga?limit=8');
+  const { data, loading, error } = useFetch(
+    `${
+      import.meta.env.VITE_MANGADEX_API_BASE_URL
+    }/manga?limit=8&includes[]=cover_art&order[followedCount]=desc`
+  );
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -13,15 +17,28 @@ export const MostPopular = () => {
     <div className="flex flex-col w-full items-center">
       <h1 className="text-[40px] font-bold">Most Popular</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 p-6">
-        {data?.data.map((manga) => (
-          <Link to={`/manga/${manga.mal_id}`} key={manga.mal_id}>
-            <MangaCard
-              title={manga.title}
-              synopsis={manga.synopsis || "No synopsis available"}
-              imageUrl={manga.images.jpg.image_url}
-            />
-          </Link>
-        ))}
+        {data?.data.map((manga) => {
+          const cover = manga.relationships.find(
+            (rel) => rel.type === "cover_art"
+          );
+          const coverFileName = cover ? cover.attributes.fileName : null;
+
+          return (
+            <Link to={`/manga/${manga.id}`} key={manga.id}>
+              <MangaCard
+                title={manga.attributes.title.en}
+                synopsis={
+                  manga.attributes.description?.en || "No synopsis available"
+                }
+                imageUrl={
+                  coverFileName
+                    ? `https://uploads.mangadex.org/covers/${manga.id}/${coverFileName}.256.jpg`
+                    : "https://via.placeholder.com/256x400.png?text=No+Cover"
+                }
+              />
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

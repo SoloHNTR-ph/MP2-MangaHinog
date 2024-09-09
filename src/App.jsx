@@ -5,6 +5,7 @@ import { Footer } from "./components/Footer";
 import { Hero } from "./pages/Hero";
 import { MangaDetails } from "./pages/MangaDetails";
 import { Result } from "./pages/ResultPage";
+import { ChapterPages } from "./pages/ChapterPages";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Hero />} />
         <Route path="/manga/:id" element={<MangaDetails />} />
         <Route path="/result" element={<Result />} />
+        <Route path="/chapter/:chapterId" element={<ChapterPages />} />
       </Routes>
       <Footer />
     </BrowserRouter>
