@@ -5,8 +5,7 @@ const useFetch = (endpoint) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const baseUrl = "https://api.mangadex.org"; // Hardcoded base URL
-
+  const baseUrl = "https://api.mangadex.org"; 
   useEffect(() => {
     const fetchData = async () => {
       try {
