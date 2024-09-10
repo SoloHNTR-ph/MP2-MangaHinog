@@ -44,7 +44,7 @@ export function Recomend() {
                   className="absolute inset-0 blur-sm bg-cover bg-center"
                   style={{ backgroundImage: `url(${getCoverImageUrl(manga)})` }}
                 ></div>
-                <div className="relative z-10">
+                <div className="relative z-10 w-full">
                   <FeatureCard
                     imageUrl={getCoverImageUrl(manga)}
                     title={manga.attributes.title.en || "No Title"}
