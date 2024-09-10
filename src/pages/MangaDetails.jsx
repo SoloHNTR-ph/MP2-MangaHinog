@@ -6,9 +6,7 @@ import { Chapters } from "../components/ui/Chapters";
 export function MangaDetails() {
   const { id } = useParams();
   const { data, loading, error } = useFetch(
-    `/manga/${id}?includes[]=author&includes[]=artist&includes[]=cover_art`, {
-      mode: "no-cors",
-    }
+    `/manga/${id}?includes[]=author&includes[]=artist&includes[]=cover_art`
   );
 
   if (loading) return <p>Loading...</p>;

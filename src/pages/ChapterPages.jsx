@@ -48,9 +48,7 @@ export function ChapterPages() {
     fetch(
       `https://api.mangadex.org/manga/${mangaId}/feed?translatedLanguage[]=en&limit=20&offset=${
         page * 20
-      }`, {
-        mode: "no-cors",
-      }
+      }`
     )
       .then((res) => res.json())
       .then((chapterResponse) => {
