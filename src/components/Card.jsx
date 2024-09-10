@@ -59,7 +59,7 @@ export function MangaCard({ title, synopsis, imageUrl }) {
 export function FeatureCard({
   imageUrl,
   title,
-  authors,
+ 
   genres,
   status,
   description,

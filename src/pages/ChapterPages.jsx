@@ -46,9 +46,7 @@ export function ChapterPages() {
 
   const fetchChapters = (mangaId) => {
     fetch(
-      `${
-        import.meta.env.VITE_MANGADEX_API_BASE_URL
-      }/manga/${mangaId}/feed?translatedLanguage[]=en&limit=20&offset=${
+      `https://api.mangadex.org/manga/${mangaId}/feed?translatedLanguage[]=en&limit=20&offset=${
         page * 20
       }`
     )
