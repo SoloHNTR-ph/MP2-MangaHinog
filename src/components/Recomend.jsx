@@ -1,5 +1,5 @@
 import React from "react";
-
+import useFetch from "../hooks/useFetch";
 import {
   Carousel,
   CarouselContent,
@@ -7,40 +7,63 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "./ui/Carousel";
+import { FeatureCard } from "./Card";
 
 export function Recomend() {
+  const { data, loading, error } = useFetch(
+    `${
+      import.meta.env.VITE_MANGADEX_API_BASE_URL
+    }/manga?limit=6&order[updatedAt]=desc&includes[]=cover_art`
+  );
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
+
+  console.log(data);
+
+  if (!data || !data.data || data.data.length < 6) {
+    return <p>No recommendations available</p>;
+  }
+
+  const getCoverImageUrl = (manga) => {
+    const cover = manga.relationships.find((rel) => rel.type === "cover_art");
+    return cover
+      ? `https://uploads.mangadex.org/covers/${manga.id}/${cover.attributes.fileName}.256.jpg`
+      : "https://via.placeholder.com/256x400?text=No+Cover";
+  };
+
   return (
-    <div className="mx-100 mb-2">
+    <div className="mx-100 mb-2 w-full">
       <Carousel className="relative w-full h-auto ">
         <CarouselContent className="flex">
-          <CarouselItem className="flex-shrink-0 w-full h-96 flex items-center justify-center">
-            <img
-              alt=""
-              src="https://wallpaper.dog/large/17176644.jpg"
-              className="w-full h-full object-cover"
-            />
-          </CarouselItem>
-          <CarouselItem className="flex-shrink-0 w-full h-96 flex items-center justify-center">
-            <img
-              alt=""
-              src="https://images.alphacoders.com/135/1352186.png"
-              className="w-full h-full object-cover"
-            />
-          </CarouselItem>
-          <CarouselItem className="flex-shrink-0 w-full h-96 flex items-center justify-center">
-            <img
-              alt=""
-              src="https://images8.alphacoders.com/135/1352188.png"
-              className="w-full h-full object-cover"
-            />
-          </CarouselItem>
-          <CarouselItem className="flex-shrink-0 w-full h-96 flex items-center justify-center">
-            <img
-              alt=""
-              src="https://images6.alphacoders.com/135/1352189.png"
-              className="w-full h-full object-cover"
-            />
-          </CarouselItem>
+          {data.data.slice(0, 6).map((manga, index) => (
+            <CarouselItem
+              key={index}
+              className="flex-shrink-0 w-full h-96 flex items-center justify-center"
+            >
+              <div className="relative w-full h-full flex items-center justify-center">
+                <div
+                  className="absolute inset-0 blur-sm bg-cover bg-center"
+                  style={{ backgroundImage: `url(${getCoverImageUrl(manga)})` }}
+                ></div>
+                <div className="relative z-10">
+                  <FeatureCard
+                    imageUrl={getCoverImageUrl(manga)}
+                    title={manga.attributes.title.en || "No Title"}
+                    ranking={manga.attributes.rating || "N/A"}
+                    status={manga.attributes.status || "Unknown"}
+                    genres={manga.attributes.tags
+                      .map((tag) => tag.attributes.name.en)
+                      .join("/ ")}
+                    
+                    description={
+                      manga.attributes.description.en || "No synopsis available"
+                    }
+                  />
+                </div>
+              </div>
+            </CarouselItem>
+          ))}
         </CarouselContent>
         <CarouselPrevious className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full cursor-pointer" />
         <CarouselNext className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full cursor-pointer" />

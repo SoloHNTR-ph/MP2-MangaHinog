@@ -1,6 +1,13 @@
 import React from "react";
 
-export function CardSearch({imageUrl, title, ranking, status, genre, synopsis}) {
+export function CardSearch({
+  imageUrl,
+  title,
+  ranking,
+  status,
+  genre,
+  synopsis,
+}) {
   return (
     <div className="border-solid border-2 border-black">
       <div className="flex">
@@ -42,6 +49,44 @@ export function MangaCard({ title, synopsis, imageUrl }) {
         <div className="mt-32 sm:mt-48 lg:mt-64">
           <div className="translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
             <p className="text-sm text-white">{synopsis}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function FeatureCard({
+  imageUrl,
+  title,
+  authors,
+  genres,
+  status,
+  description,
+}) {
+  return (
+    <div>
+      <div className="mt-3 mx-5">
+        <div className="flex w-full gap-9">
+          <div className="w-48">
+            <img src={imageUrl} alt={title} />
+          </div>
+          <div className="flex flex-col w-full h-auto justify-between">
+            <div className="flex flex-col justify-between w-full">
+              <h1 className="text-6xl font-extrabold">{title}</h1>
+              <div className="flex justify-between">
+                <div className="flex gap-5">
+                  <h3>{genres}</h3>
+                </div>
+                <div className="flex">
+                  <h3>{status}</h3>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3>Summary:</h3>
+              <p>{description}</p>
+            </div>
           </div>
         </div>
       </div>

@@ -53,9 +53,9 @@ export function MangaDetails() {
                   <h3>
                     {authors
                       ?.map((author) => author.attributes.name)
-                      .join(", ") || "No authors available"}
+                      .join("/") || "No authors available"}
                   </h3>
-                  <h3>{genres?.join(", ") || "No genres available"}</h3>
+                  <h3>{genres?.join("/") || "No genres available"}</h3>
                 </div>
                 <div className="flex">
                   <h3>{status || "Unknown status"}</h3>
