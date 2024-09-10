@@ -5,7 +5,9 @@ import useFetch from "../../hooks/useFetch";
 
 export const MostPopular = () => {
   const { data, loading, error } = useFetch(
-    `/manga?limit=8&includes[]=cover_art&order[followedCount]=desc`
+    `/manga?limit=8&includes[]=cover_art&order[followedCount]=desc`, {
+      mode: "no-cors",
+    }
   );
 
   if (loading) return <p>Loading...</p>;

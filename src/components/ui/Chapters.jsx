@@ -8,7 +8,9 @@ export const Chapters = () => {
   const [page, setPage] = useState(0);
   const [isFetching, setIsFetching] = useState(false);
   const { data, loading, error } = useFetch(
-    `/manga/${id}/feed?translatedLanguage[]=en&order[chapter]=desc&limit=20&offset=${page * 20}`
+    `/manga/${id}/feed?translatedLanguage[]=en&order[chapter]=desc&limit=20&offset=${page * 20}`, {
+      mode: "no-cors",
+    }
   );
 
   

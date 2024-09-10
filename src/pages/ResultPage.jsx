@@ -9,7 +9,9 @@ export const Result = () => {
   const { data, loading, error } = useFetch(
     query
       ? `/manga?title=${query}&limit=10&includes[]=cover_art`
-      : null
+      : null, {
+        mode: "no-cors",
+      }
   );
 
   if (!query) return <p>Please enter a Manga.</p>;

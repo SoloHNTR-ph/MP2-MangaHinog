@@ -11,7 +11,10 @@ import { FeatureCard } from "./Card";
 
 export function Recomend() {
   const { data, loading, error } = useFetch(
-    `/manga?limit=6&order[updatedAt]=desc&includes[]=cover_art`
+    `/manga?limit=6&order[updatedAt]=desc&includes[]=cover_art`,
+    {
+      mode: "no-cors",
+    }
   );
 
   if (loading) return <p>Loading...</p>;
@@ -53,7 +56,6 @@ export function Recomend() {
                     genres={manga.attributes.tags
                       .map((tag) => tag.attributes.name.en)
                       .join("/ ")}
-                    
                     description={
                       manga.attributes.description.en || "No synopsis available"
                     }
