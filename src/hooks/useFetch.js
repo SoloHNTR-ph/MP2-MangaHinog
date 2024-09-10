@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
 
-const useFetch = (url) => {
+const useFetch = (endpoint) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const baseUrl = "https://api.mangadex.org"; // Hardcoded base URL
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(url);
+        const response = await fetch(`${baseUrl}${endpoint}`);
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
@@ -22,7 +24,7 @@ const useFetch = (url) => {
     };
 
     fetchData();
-  }, [url]);
+  }, [endpoint]);
 
   return { data, loading, error };
 };

@@ -8,7 +8,7 @@ export const Result = () => {
   const query = new URLSearchParams(useLocation().search).get("search");
   const { data, loading, error } = useFetch(
     query
-      ? `${import.meta.env.VITE_MANGADEX_API_BASE_URL}/manga?title=${query}&limit=10&includes[]=cover_art`
+      ? `/manga?title=${query}&limit=10&includes[]=cover_art`
       : null
   );
 

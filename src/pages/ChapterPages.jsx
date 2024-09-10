@@ -12,11 +12,11 @@ export function ChapterPages() {
   const [isFetching, setIsFetching] = useState(false);
 
   const { data, loading, error } = useFetch(
-    `${import.meta.env.VITE_MANGADEX_API_BASE_URL}/at-home/server/${chapterId}`
+    `/at-home/server/${chapterId}`
   );
 
   const { data: chapterData } = useFetch(
-    `${import.meta.env.VITE_MANGADEX_API_BASE_URL}/chapter/${chapterId}`
+    `/chapter/${chapterId}`
   );
 
   const pages = data?.chapter?.data || [];
@@ -32,7 +32,7 @@ export function ChapterPages() {
       )?.id;
 
       if (mangaId) {
-        fetch(`${import.meta.env.VITE_MANGADEX_API_BASE_URL}/manga/${mangaId}`)
+        fetch(`/manga/${mangaId}`)
           .then((res) => res.json())
           .then((mangaResponse) => {
             setTitle(mangaResponse.data.attributes.title.en || "Unknown Title");

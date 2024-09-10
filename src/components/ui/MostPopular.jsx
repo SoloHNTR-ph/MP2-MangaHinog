@@ -5,9 +5,7 @@ import useFetch from "../../hooks/useFetch";
 
 export const MostPopular = () => {
   const { data, loading, error } = useFetch(
-    `${
-      import.meta.env.VITE_MANGADEX_API_BASE_URL
-    }/manga?limit=8&includes[]=cover_art&order[followedCount]=desc`
+    `/manga?limit=8&includes[]=cover_art&order[followedCount]=desc`
   );
 
   if (loading) return <p>Loading...</p>;

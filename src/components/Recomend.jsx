@@ -11,9 +11,7 @@ import { FeatureCard } from "./Card";
 
 export function Recomend() {
   const { data, loading, error } = useFetch(
-    `${
-      import.meta.env.VITE_MANGADEX_API_BASE_URL
-    }/manga?limit=6&order[updatedAt]=desc&includes[]=cover_art`
+    `/manga?limit=6&order[updatedAt]=desc&includes[]=cover_art`
   );
 
   if (loading) return <p>Loading...</p>;
