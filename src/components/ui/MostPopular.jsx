@@ -30,7 +30,7 @@ export const MostPopular = () => {
                 }
                 imageUrl={
                   coverFileName
-                    ? `/covers/${manga.id}/${coverFileName}.256.jpg` // Use Netlify proxy
+                    ? `https://uploads.mangadex.org/covers/${manga.id}/${coverFileName}.256.jpg`
                     : "https://via.placeholder.com/256x400.png?text=No+Cover"
                 }
               />
