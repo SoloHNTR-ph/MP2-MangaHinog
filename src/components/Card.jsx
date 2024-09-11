@@ -84,7 +84,7 @@ export function FeatureCard({
               </div>
             </div>
             <div>
-              <h3>Summary:</h3>
+              <h3 className="text-white text-sm" >Summary:</h3>
               <p>{description}</p>
             </div>
           </div>
