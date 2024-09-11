@@ -83,15 +83,11 @@ export const Header = () => {
             </Link>
           </li>
           <li className="text-xl font-medium hover:scale-105 transition-all cursor-pointer hover:text-primary-color">
-            <Link to="/browse" onClick={toggleMenu}>
+            <Link to={'/Browse'} onClick={toggleMenu}>
               Browse
             </Link>
           </li>
-          <li className="text-xl font-medium hover:scale-105 transition-all cursor-pointer hover:text-primary-color">
-            <Link to="/latest" onClick={toggleMenu}>
-              Latest Update
-            </Link>
-          </li>
+          
         </ul>
       </div>
       <SearchBar/>

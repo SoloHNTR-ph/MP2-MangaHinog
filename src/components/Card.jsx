@@ -9,7 +9,7 @@ export function CardSearch({
   synopsis,
 }) {
   return (
-    <div className="border-solid border-2 border-black">
+    <div className="border-solid border-2 border-black ">
       <div className="flex">
         <div>
           <img src={imageUrl} alt="" className="rounded max-w-sm h-36" />
@@ -36,11 +36,11 @@ export function CardSearch({
 
 export function MangaCard({ title, synopsis, imageUrl }) {
   return (
-    <div className="group relative block bg-black w-full h-svh">
+    <div className="group relative block bg-black w-full h-svh rounded-lg overflow-hidden">
       <img
         alt={title}
         src={imageUrl}
-        className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"
+        className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50 rounded-lg"
       />
 
       <div className="relative p-4 sm:p-6 lg:p-8">
@@ -55,6 +55,7 @@ export function MangaCard({ title, synopsis, imageUrl }) {
     </div>
   );
 }
+
 
 export function FeatureCard({
   imageUrl,
@@ -87,6 +88,28 @@ export function FeatureCard({
               <h3>Summary:</h3>
               <p>{description}</p>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function BrowseCard({ title, synopsis, imageUrl }) {
+  return (
+    <div className="group relative block bg-black w-full h-96">
+      <img
+        alt={title}
+        src={imageUrl}
+        className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"
+      />
+
+      <div className="relative p-4 sm:p-6 lg:p-8">
+        <p className="text-xl font-bold text-white sm:text-2xl">{title}</p>
+
+        <div className="mt-auto sm:mt-auto lg:mt-auto">
+          <div className="translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
+            <p className="text-sm text-white">{synopsis}</p>
           </div>
         </div>
       </div>

@@ -45,17 +45,22 @@ export function Recomend() {
                   style={{ backgroundImage: `url(${getCoverImageUrl(manga)})` }}
                 ></div>
                 <div className="relative z-10 w-full">
-                  <FeatureCard
+                <FeatureCard
                     imageUrl={getCoverImageUrl(manga)}
-                    title={manga.attributes.title.en || "No Title"}
-                    ranking={manga.attributes.rating || "N/A"}
-                    status={manga.attributes.status || "Unknown"}
-                    genres={manga.attributes.tags
-                      .map((tag) => tag.attributes.name.en)
-                      .join("/ ")}
-                    
+                    title={<span className="text-white text-xl font-semibold">{manga.attributes.title.en || "No Title"}</span>}
+                    ranking={<span className="text-white text-sm">{manga.attributes.rating || "N/A"}</span>}
+                    status={<span className="text-white text-sm">{manga.attributes.status || "Unknown"}</span>}
+                    genres={
+                      <span className="text-white text-sm">
+                        {manga.attributes.tags
+                          .map((tag) => tag.attributes.name.en)
+                          .join("/ ")}
+                      </span>
+                    }
                     description={
-                      manga.attributes.description.en || "No synopsis available"
+                      <p className="text-white text-sm">
+                        {manga.attributes.description.en || "No synopsis available"}
+                      </p>
                     }
                   />
                 </div>
