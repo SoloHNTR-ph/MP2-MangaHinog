@@ -8,6 +8,7 @@ import {
   CarouselPrevious,
 } from "./ui/Carousel";
 import { FeatureCard } from "./Card";
+import { Link } from "react-router-dom";
 
 export function Recomend() {
   const { data, loading, error } = useFetch(
@@ -16,8 +17,6 @@ export function Recomend() {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
-
-  console.log(data);
 
   if (!data || !data.data || data.data.length < 6) {
     return <p>No recommendations available</p>;
@@ -32,7 +31,7 @@ export function Recomend() {
 
   return (
     <div className="mx-100 mb-2 w-full">
-      <Carousel className="relative w-full h-auto ">
+      <Carousel className="relative w-full h-auto">
         <CarouselContent className="flex">
           {data.data.slice(0, 6).map((manga, index) => (
             <CarouselItem
@@ -41,28 +40,48 @@ export function Recomend() {
             >
               <div className="relative w-full h-full flex items-center justify-center">
                 <div
-                  className="absolute inset-0 blur-sm bg-cover bg-center"
-                  style={{ backgroundImage: `url(${getCoverImageUrl(manga)})` }}
+                  className="absolute inset-0 bg-cover blur-sm bg-center"
+                  style={{
+                    backgroundImage: `url(${getCoverImageUrl(manga)})`,
+                  }}
                 ></div>
+
+                <div className="absolute inset-0 bg-black opacity-50"></div>
+
                 <div className="relative z-10 w-full">
-                <FeatureCard
-                    imageUrl={getCoverImageUrl(manga)}
-                    title={<span className="text-white text-xl font-semibold">{manga.attributes.title.en || "No Title"}</span>}
-                    ranking={<span className="text-white text-sm">{manga.attributes.rating || "N/A"}</span>}
-                    status={<span className="text-white text-sm">{manga.attributes.status || "Unknown"}</span>}
-                    genres={
-                      <span className="text-white text-sm">
-                        {manga.attributes.tags
-                          .map((tag) => tag.attributes.name.en)
-                          .join("/ ")}
-                      </span>
-                    }
-                    description={
-                      <p className="text-white text-sm">
-                        {manga.attributes.description.en || "No synopsis available"}
-                      </p>
-                    }
-                  />
+                  <Link to={`/manga/${manga.id}`}>
+                    <FeatureCard
+                      imageUrl={getCoverImageUrl(manga)}
+                      title={
+                        <span className="text-white text-xl font-semibold">
+                          {manga.attributes.title.en || "No Title"}
+                        </span>
+                      }
+                      ranking={
+                        <span className="text-white text-sm">
+                          {manga.attributes.rating || "N/A"}
+                        </span>
+                      }
+                      status={
+                        <span className="text-white text-sm">
+                          {manga.attributes.status || "Unknown"}
+                        </span>
+                      }
+                      genres={
+                        <span className="text-white text-sm">
+                          {manga.attributes.tags
+                            .map((tag) => tag.attributes.name.en)
+                            .join("/ ")}
+                        </span>
+                      }
+                      description={
+                        <p className="text-white text-sm">
+                          {manga.attributes.description.en ||
+                            "No synopsis available"}
+                        </p>
+                      }
+                    />
+                  </Link>
                 </div>
               </div>
             </CarouselItem>

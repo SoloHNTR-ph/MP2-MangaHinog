@@ -11,13 +11,8 @@ export function ChapterPages() {
   const [page, setPage] = useState(0);
   const [isFetching, setIsFetching] = useState(false);
 
-  const { data, loading, error } = useFetch(
-    `/at-home/server/${chapterId}`
-  );
-
-  const { data: chapterData } = useFetch(
-    `/chapter/${chapterId}`
-  );
+  const { data, loading, error } = useFetch(`/at-home/server/${chapterId}`);
+  const { data: chapterData } = useFetch(`/chapter/${chapterId}`);
 
   const pages = data?.chapter?.data || [];
   const imageUrl =
@@ -46,9 +41,7 @@ export function ChapterPages() {
 
   const fetchChapters = (mangaId) => {
     fetch(
-      `https://corsproxy.io/?https://api.mangadex.org/manga/${mangaId}/feed?translatedLanguage[]=en&limit=20&offset=${
-        page * 20
-      }`
+      `https://api.mangadex.org/manga/${mangaId}/feed?translatedLanguage[]=en&limit=20&offset=${page * 20}`
     )
       .then((res) => res.json())
       .then((chapterResponse) => {
@@ -90,54 +83,53 @@ export function ChapterPages() {
   if (error) return <p>Error fetching pages: {error}</p>;
 
   return (
-    <div className="container">
-      <h1 className="text-5xl">{title}</h1>
+    <div className="container mx-auto p-4">
+      <h1 className="text-4xl font-bold mb-4">{title}</h1>
 
-      <div className="sm:col-span-3 w-full justify-center gap-3 items-center flex mt-4">
-        <div className="mt-2">
+      <div className="flex items-center gap-4 mb-4">
+        <div className="flex-1">
           <select
-            className="block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 overflow-y-auto overflow-y-scroll h-auto"
+            className="block w-full rounded-md border-gray-300 py-2 px-4 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600"
             onScroll={handleScroll}
             onChange={handleChapterChange}
             value={chapterId}
           >
             <optgroup>
               {chapters.map((chapter) => (
-                <option key={chapter.id} value={chapter.id} className="py-2">
-                  Chapter {chapter.attributes.chapter || "N/A"} -{" "}
-                  {chapter.attributes.title || ""}
+                <option key={chapter.id} value={chapter.id}>
+                  Chapter {chapter.attributes.chapter || "N/A"} - {chapter.attributes.title || ""}
                 </option>
               ))}
             </optgroup>
           </select>
         </div>
+
+        <div className="flex gap-4">
+          <button
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 0))}
+            disabled={currentPage === 0}
+            className="px-4 py-2 border border-gray-400 rounded-md bg-white text-gray-700 shadow-sm hover:bg-gray-50 disabled:opacity-50 w-32"
+          >
+            Previous Page
+          </button>
+          <button
+            onClick={() =>
+              setCurrentPage((prev) => Math.min(prev + 1, pages.length - 1))
+            }
+            disabled={currentPage === pages.length - 1}
+            className="px-4 py-2 border border-gray-400 rounded-md bg-white text-gray-700 shadow-sm hover:bg-gray-50 w-32"
+          >
+            Next Page
+          </button>
+        </div>
       </div>
 
-      <div className="flex justify-between gap-3 mt-4">
-        <button
-          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 0))}
-          disabled={currentPage === 0}
-          className="bg-white p-2 rounded ring-1 ring-inset ring-gray-300"
-        >
-          Previous Page
-        </button>
-        <button
-          onClick={() =>
-            setCurrentPage((prev) => Math.min(prev + 1, pages.length - 1))
-          }
-          disabled={currentPage === pages.length - 1}
-          className="bg-white p-2 rounded ring-1 ring-inset ring-gray-300"
-        >
-          Next Page
-        </button>
-      </div>
-
-      <div className="h-screen bg-no-repeat bg-center overflow-y-auto">
+      <div className="flex justify-center items-center relative h-[80vh] bg-no-repeat bg-center">
         {imageUrl ? (
           <img
             src={imageUrl}
             alt={`Page ${currentPage + 1}`}
-            className="h-full w-auto mx-auto"
+            className="max-h-full max-w-full object-contain"
           />
         ) : (
           <p>No pages available</p>
