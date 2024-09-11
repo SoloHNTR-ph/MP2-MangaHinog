@@ -18,7 +18,7 @@ export const Result = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="container">
+    <div className="container flex flex-col gap-2">
       <h1>Search Results for "{query}":</h1>
       {data?.data?.map((manga, index) => {
         const cover = manga.relationships.find((rel) => rel.type === "cover_art");
@@ -36,6 +36,7 @@ export const Result = () => {
               status={manga.attributes.status || "Unknown status"}
               genre={manga.attributes.tags?.map((tag) => tag.attributes.name.en).join(", ") || "No genres available"}
               synopsis={manga.attributes.description?.en || "No synopsis available"}
+              
             />
           </Link>
         );

@@ -14,7 +14,7 @@ export const Browse = () => {
   return (
     <div className="flex flex-col w-full items-center">
       <h1 className="text-[40px] font-bold">Browse</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 p-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 p-6">
         {data?.data.map((manga) => {
           const cover = manga.relationships.find(
             (rel) => rel.type === "cover_art"

@@ -55,7 +55,7 @@ export const Header = () => {
       <div
         className={`${
           isOpen ? "fixed" : "hidden"
-        } top-10 left-8 right-0 w-[200px] h-[200px] bg-white z-0 flex flex-col justify-start items-start gap-10`}
+        } top-10 left-8 right-0 w-16 h-auto bg-white z-0 flex flex-col justify-start items-start gap-10 rounded-md`}
       >
         <button
           onClick={toggleMenu}
