@@ -9,13 +9,13 @@ export function CardSearch({
   synopsis,
 }) {
   return (
-    <div className="border-solid border-2 border-black ">
-      <div className="flex">
-        <div>
+    <div className="border-solid border-2 border-black p-2 rounded-lg">
+      <div className="flex w-full ">
+        <div className="mx-1">
           <img src={imageUrl} alt="" className="rounded max-w-sm h-36" />
         </div>
-        <div>
-          <div className="flex justify-between">
+        <div className="mx-3 w-full flex flex-col justify-between">
+          <div className="flex justify-between w-full">
             <h1 className="font-extrabold">{title}</h1>
             <div className="flex justify-evenly">
               <div className="px-1">{ranking}</div>
