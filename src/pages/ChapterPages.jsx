@@ -124,7 +124,7 @@ export function ChapterPages() {
         </div>
       </div>
 
-      <div className="flex justify-center items-center relative h-[80vh] bg-no-repeat bg-center">
+      <div className="flex justify-center items-center relative h-[70vh] bg-no-repeat bg-center">
         {imageUrl ? (
           <img
             src={imageUrl}
