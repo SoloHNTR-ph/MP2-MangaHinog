@@ -29,7 +29,7 @@ export const Result = () => {
             <CardSearch
               imageUrl={
                 coverFileName
-                  ? `https://uploads.mangadex.org/covers/${manga.id}/${coverFileName}.256.jpg`
+                  ? `https://corsproxy.io/?https://uploads.mangadex.org/covers/${manga.id}/${coverFileName}.256.jpg`
                   : "https://via.placeholder.com/256x400.png?text=No+Cover"
               }
               title={manga.attributes.title.en || "No title available"}

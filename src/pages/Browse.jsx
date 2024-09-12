@@ -5,7 +5,7 @@ import useFetch from "../hooks/useFetch";
 
 export const Browse = () => {
   const { data, loading, error } = useFetch(
-    `/manga?includes[]=cover_art&order[title]=asc&limit=50`
+    `/manga?includes[]=cover_art&order[followedCount]=asc&limit=50`
   );
 
   if (loading) return <p>Loading...</p>;

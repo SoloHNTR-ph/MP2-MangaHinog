@@ -30,13 +30,13 @@ export function Recomend() {
   };
 
   return (
-    <div className="mx-100 mb-2 w-full">
-      <Carousel className="relative w-full h-auto">
-        <CarouselContent className="flex">
+    <div className="mx-100 mb-2 w-full ">
+      <Carousel className="relative w-full h-auto ">
+        <CarouselContent className="flex ">
           {data.data.slice(0, 6).map((manga, index) => (
             <CarouselItem
               key={index}
-              className="flex-shrink-0 w-full h-96 flex items-center justify-center"
+              className="flex-shrink-0 w-full h-96 flex items-center justify-center "
             >
               <div className="relative w-full h-full flex items-center justify-center">
                 <div
