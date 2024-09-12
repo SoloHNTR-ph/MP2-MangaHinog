@@ -25,7 +25,7 @@ export function Recomend() {
   const getCoverImageUrl = (manga) => {
     const cover = manga.relationships.find((rel) => rel.type === "cover_art");
     return cover
-      ? `https://uploads.mangadex.org/covers/${manga.id}/${cover.attributes.fileName}.256.jpg`
+      ? `https://corsproxy.io/?https://uploads.mangadex.org/covers/${manga.id}/${cover.attributes.fileName}.256.jpg`
       : "https://via.placeholder.com/256x400?text=No+Cover";
   };
 
