@@ -48,7 +48,7 @@ export function Recomend() {
 
                 <div className="absolute inset-0 bg-black opacity-50"></div>
 
-                <div className="relative z-10 w-full">
+                <div className="relative z-10 w-full mx-5">
                   <Link to={`/manga/${manga.id}`}>
                     <FeatureCard
                       imageUrl={getCoverImageUrl(manga)}

@@ -41,7 +41,7 @@ export function ChapterPages() {
 
   const fetchChapters = (mangaId) => {
     fetch(
-      `https://api.mangadex.org/manga/${mangaId}/feed?translatedLanguage[]=en&limit=20&offset=${page * 20}`
+      `https://corsproxy.io/https://api.mangadex.org/manga/${mangaId}/feed?translatedLanguage[]=en&limit=20&offset=${page * 20}`
     )
       .then((res) => res.json())
       .then((chapterResponse) => {
