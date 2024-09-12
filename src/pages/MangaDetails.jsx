@@ -35,7 +35,7 @@ export function MangaDetails() {
             <img
               src={
                 coverFileName
-                  ? `https://uploads.mangadex.org/covers/${id}/${coverFileName}.256.jpg`
+                  ? `https://corsproxy.io/?https://uploads.mangadex.org/covers/${id}/${coverFileName}.256.jpg`
                   : "https://via.placeholder.com/256x400.png?text=No+Cover"
               }
               alt={title}
