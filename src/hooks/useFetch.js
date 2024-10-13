@@ -5,7 +5,7 @@ const useFetch = (endpoint) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const baseUrl = "https://corsproxy.io/?https://api.mangadex.org"; 
+  const baseUrl = "https://proxy.cors.sh/https://api.mangadex.org"; 
   useEffect(() => {
     const fetchData = async () => {
       try {
